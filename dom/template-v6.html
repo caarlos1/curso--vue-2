@@ -1,0 +1,42 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <!-- Para imprimir algo apenas uma vez e não modificar, usa-se o "v-once". -->
+    <p v-once>{{ titulo }}</p>
+    
+    <!-- Essa função modifica o título e o retorna novamente, sem modificar o anterior. -->
+    <p>{{ mudarTitulo() }}</p> 
+
+    <!-- Para imprimir contéudo de methods, use o "()" no final -->
+    <p>{{ saudar() }}</p>
+
+    <!-- Usando o "v-bind:" é possível imprimir conteúdo dentro de alguma tag do html. -->
+    <a v-bind:href="link">Link do Google</a>
+
+    <!-- Usando o "v-html" é possivel  imprimir html puro. -->
+    <p v-html="linkHtml"></p>
+
+</div>
+
+<script>
+new Vue({
+    el: "#app",
+    data: {
+        titulo: "Exemplo de Temaplate",
+        saudacao: "Boa semana pra todo mundo!",
+        link: "https://google.com.br",
+        linkHtml: '<a href="https://google.com.br">Outro Link para o Google</a>'
+    },
+    methods: {
+        // O return para ser impresso no DOM deve ser convertível para string.
+        saudar: function(){
+            // console.log(this);
+            return this.saudacao;
+        },
+        mudarTitulo: () => {
+            this.titulo = "Exemplo de Template Super Legal!";
+            return this.titulo;
+        }
+    },
+});
+</script>
