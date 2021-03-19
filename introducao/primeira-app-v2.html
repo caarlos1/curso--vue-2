@@ -1,0 +1,24 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <!-- 
+        usando o v-on:input é possivel colcoar o método sem ()
+        v-on:input ativa quando passado informações no formulário.
+    -->
+    <input type="text" v-on:input="alterarTitulo">
+    <p>{{mensagem}}</p>
+</div>
+
+<script>
+new Vue({
+    el: "#app",
+    data: {
+        mensagem: "Opa, sou o primeiro App!",
+    },
+    methods: {
+        alterarTitulo(event){
+            this.mensagem = event.target.value;
+        }
+    }
+});
+</script>
