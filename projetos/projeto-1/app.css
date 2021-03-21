@@ -1,0 +1,80 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #eee;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#jogo {
+    margin-top: 5%;
+}
+
+.meu-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.meu-row {
+    box-sizing: border-box;
+    background-color: #FFF;
+    width: 50%;
+    margin-top: 20px;
+    padding: 20px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.055);
+    text-align: center;
+    display: block;
+}
+
+.nome-game{
+    float: left;
+    width: 100%;
+}
+
+.informacoes-game{
+    box-sizing: border-box;
+    float: left;
+    width: 50%;
+    text-align: center;
+    padding: 20px;
+}
+
+.informacoes-game h2{
+    margin-top: 0;
+    font-weight: normal;
+}
+
+.barra-vida{
+    height: 30px;
+    width: 100%;
+    border: 1px solid rgb(196, 196, 196);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.158);
+
+}
+
+.vida-positiva{
+    background-color: green;
+}
+
+.vida-positiva-monstro{
+    background-color: purple;
+}
+
+.vida-fraca{
+    background-color: red;
+}
+
+.vida-cheia{
+    width: 50%;
+    height: 100%;
+}
+
+.borda-verde{
+    border-bottom: 10px solid green;
+}
+
+.borda-vermelha{
+    border-bottom: 10px solid red;
+}
