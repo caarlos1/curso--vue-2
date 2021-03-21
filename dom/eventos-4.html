@@ -1,0 +1,53 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <div v-on:mousemove="atualizarPosicoes" class="posicoes">
+        <p>{{ contador }}</p>
+        <!-- $event diz ao Vue que quer passar também o evento. -->
+        <button v-on:click="somarUm(1, $event)">Mais 1!</button>
+        <p>
+                Mouse: {{ x }} e {{ y }}
+            <br> 
+                <span v-on:mousemove.stop="pararPosicoes"> Aqui não funciona!</span><br>
+            <!--  .stop para o evento -->
+                <span v-on:mousemove.stop> Aqui também não.</span> <br>
+            <!-- .prevet previne o comportamento padrão -->
+            <a v-on:click.prevent="naoNavegar" href="https://google.com">Google</a>
+        </p>
+    </div>
+</div>
+
+<script>
+new Vue({
+    el: "#app",
+    data: {
+        contador: 0,
+        x: 0,
+        y: 0,
+    },
+    methods: {
+        somarUm(numero, event){
+            console.log(event);
+            this.contador += numero;
+        },
+        atualizarPosicoes(e){
+            this.x = e.clientX;
+            this.y = e.clientY;
+        },
+        pararPosicoes(e){
+            e.stopPropagation(); // Para a propagação do evento.
+        },
+        naoNavegar(e){
+            // e.preventDefault(); // Previne do comportamento padrão.
+            console.log("Não vou para lugar nenhum!");
+        }
+    }
+});
+</script>
+
+<style>
+    .posicoes{
+        height: 100%;
+        width: 100%;
+    }
+</style>

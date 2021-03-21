@@ -1,0 +1,44 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <div>
+        <button v-on:click="aumentar">Aumentar</button>
+        <button v-on:click="contador2++">Aumentar</button>
+        <button v-on:click="diminuir">Diminuir</button>
+        <p>Contador: {{ contador }} | {{ contador2 }}</p>
+        <p>Resultado: {{ resultado }}</p>
+    </div>
+</div>
+
+<script>
+new Vue({
+    el: "#app",
+    data: {
+        contador: 0,
+        contador2: 0,
+    },
+
+    // Methods devem ser usados apenas quando precisamos de um cache pois seus métodos
+    // são executados o tempo todo.
+    // Úteis para ações leves e lógicas simples.
+    methods: {
+        aumentar() {
+            this.contador++;
+        },
+        diminuir(){
+            this.contador--;
+        },
+    },
+    // Usar computed ajuda a evitar rodar código desnecessário.
+    // Computeds apena são chamados quando uma de suas dependencias for atualizada (uma das propriades usadas em alguma função).
+    // Métodos computados não precisam de () ao sem chamado no  {{}}.
+    // São feitos para usar lógicas complexas que consomem tempo e memoria.
+    // Usar quando algo deve ser cachado.
+    computed: {
+        resultado(){
+            console.log("oi");
+            return this.contador >= 5 ? 'Maior ou igual a 5' : 'Menor que 5'
+        }
+    }
+});
+</script>

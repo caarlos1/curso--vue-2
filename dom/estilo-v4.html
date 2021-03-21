@@ -1,0 +1,60 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <div id="caixas">
+        <div class="demo" :style="{ 'background-color': cor }"></div>
+        <div class="demo" :style="{ backgroundColor: cor }"></div>
+        <div class="demo" :style="definirCaracteristas"></div>
+        <input type="text" v-model="cor"> <input type="text" v-model="largura">
+    </div>
+</div>
+
+<script>
+new Vue({
+    el: "#app",
+
+    data: {
+        cor: 'pink',
+        largura: 50,
+    },
+
+    computed: {
+        // propriedade retorna um objeto com as caracteristicas para :style
+        definirCaracteristas(){
+            return {
+                backgroundColor: this.cor,
+                width: this.largura + 'px',
+            }
+        }
+    },
+});
+</script>
+
+<style>
+    #caixas {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .demo  {
+        background-color: blue;
+        height: 50px;
+        width: 50px;
+    }
+
+    .c1{
+        background-color: black;
+    }
+
+    .c2 {
+        background-color: blueviolet;
+    }
+
+    .c3 {
+        background-color: burlywood;
+    }
+
+    .arrendondar {
+        border-radius: 50%;
+    }
+</style>

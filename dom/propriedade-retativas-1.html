@@ -1,0 +1,27 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <div>
+        <p>{{ titulo }}</p>
+        <!-- <input type="text" v-bind:value="titulo" v-on:input="titulo = $event.target.value"> -->
+        <input type="text" v-model="titulo">
+
+    </div>
+</div>
+
+<script>
+new Vue({
+    el: "#app",
+    data: {
+        titulo: 'Eu sou um title.',
+
+    },
+});
+</script>
+
+<style>
+    .posicoes{
+        height: 100%;
+        width: 100%;
+    }
+</style>

@@ -1,0 +1,75 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <div id="caixas">
+        <div class="demo" @click="ativaClasse('C1')" :class="{c1: C1}"></div>
+        <!-- Podemos passar um propriedade computada para :class -->
+        <div class="demo" @click="ativaClasse(['C2', 'blocoArrendondado'])" :class="[estiloUm, {arrendondar: blocoArrendondado}]"></div>
+        <div class="demo" :class="classeCSS"></div>
+        <input type="text" v-model="classeCSS">
+    </div>
+</div>
+
+<script>
+new Vue({
+    el: "#app",
+
+    data: {
+        C1: false,
+        C2: false,
+        C3: false,
+        classeCSS: 'c3',
+        blocoArrendondado: false,
+    },
+
+    methods: {
+        ativaClasse(classe){
+            // Recebi uma array de propriedades e mudei os seus valores com o forEach.
+            classe.forEach((element) => {
+                // this[element] corresponde o mesmo que this.C2 e depois this.blocoArrendondado.
+                this[element] = !this[element];
+            });
+        }
+    },
+
+    computed: {
+        estiloUm(){
+            return {
+                // this.C2 for true, recebe .c1
+                // se não, recebe .c2
+                c1: this.C2,
+                c2: !this.C2
+            }
+        }
+    },
+});
+</script>
+
+<style>
+    #caixas {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .demo  {
+        background-color: blue;
+        height: 50px;
+        width: 50px;
+    }
+
+    .c1{
+        background-color: black;
+    }
+
+    .c2 {
+        background-color: blueviolet;
+    }
+
+    .c3 {
+        background-color: burlywood;
+    }
+
+    .arrendondar {
+        border-radius: 50%;
+    }
+</style>
