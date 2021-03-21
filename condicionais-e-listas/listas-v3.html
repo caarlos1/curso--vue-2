@@ -1,0 +1,25 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <ul>
+        <!-- v-for é colocado no item que será repetido, não no pai. -->
+        <!-- (cor, indice) in cores pegamos o indice e o valor de cor. -->
+        <li v-for="(cor, indice) in cores">{{ (indice + 1) + ') ' + cor }}</li>
+        <hr>
+        Usar o :key é importante, pois ajua o Vue na rendereziação e ordem dos itens.
+        <template v-for="(cor, indice) in cores" :key="cor">
+            <h2>{{ cor }}</h2>
+            <p>Indice: {{ indice }}</p>
+        </template>
+    </ul>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            cores: ['amarelo', 'azul', 'vermelho'],
+        }
+    });
+</script>
