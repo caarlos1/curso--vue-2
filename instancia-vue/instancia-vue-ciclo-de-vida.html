@@ -1,0 +1,55 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <h1>{{ titulo }}</h1>    
+    <button @click="titulo += '#'">Alterar Título</button>
+    <button @click="$destroy()"> Destruir Instância</button>
+
+</div>
+
+<script>
+    const vm = new Vue({
+        data: {
+            titulo: "Ciclo de vida Vue.",
+        },
+
+        // Chamados na criação do Objeto
+        beforeCreate(){
+            console.log('Vou inicializar...');
+        },
+
+        created(){
+            console.log('Inicializei!');
+        },
+
+        beforeMount(){
+            console.log('Agora vou montar as cosias...');
+        },
+
+        mounted(){
+            console.log('Prontinho, montei.');
+        },
+        
+        // Chamados quando há atualização da DOM.
+
+        beforeUpdate(){
+            console.log('Vou atualizar a DOM!');
+        },
+
+        updated(){
+            console.log('Prontinhom atualizei a DOM.');
+        },
+
+        beforeDestroy(){
+            console.log('Oh nows! Vou morrer...');
+        },
+
+        destroyed(){
+            console.log('Morri!');
+        },
+    });
+
+    // Montanod a instância vue de fora, passando o id.
+    vm.$mount('#app');
+</script>

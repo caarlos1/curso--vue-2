@@ -1,0 +1,30 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<div id="app">
+   <div>
+    {{ dados['endereco'] }} {{ dados['numero'] }}
+   </div>
+</div>
+
+<script>
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            dados: {
+                endereco: "Rua Sabatina",
+                numero: 15,
+                bairro: "Domingo",
+            }
+        },
+        methods: {
+            oi(e){
+                console.log('oi');
+            }
+        },
+        computed: {
+            oi2(e){
+                console.log('oi');
+            }
+        }
+    });
+</script>

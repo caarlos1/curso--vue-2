@@ -1,0 +1,44 @@
+<meta charset="UTF-8">
+
+<div id="app">
+    {{ nome }} {{ 7 / 15 }} {{ Math.pow(2,3) }}
+</div>
+
+<script>
+    function MeuVue(params){
+        this.$el = document.querySelector(params.el); // Seleciona a tag principal
+        this.$data = params.data; // coloca em $ o que é criado em data: {}
+
+        // Faz um loop com que foi passado em this.$data
+        for (let atr in this.$data) {
+            // Defino o que tem no array como propriedade do meu proprio objeto.
+            Object.defineProperty(this, atr, {
+                get: () => {
+                    return this.$data[atr];
+                },
+                set: value => {
+                    this.$data[atr] = value;
+                }
+            });
+        }
+
+        // Interplar 
+        // Criamos o regex
+        const regex = /\{\{([\s\w)(,.+*-//]*)\}\}/g;
+        // O conteúdo do HTML irá receber um novo HTML com raplace.
+        this.$el.innerHTML = this.$el.innerHTML.replace(regex, (metch, $1) => {
+            const value =  this[$1.trim()];
+            return value ? value : eval($1);
+        });
+    }
+
+    const vm = new MeuVue({
+        el: '#app',
+        data: {
+            nome: 'Carlos',
+            idade: 22,
+        }
+    });
+
+    console.log(vm.nome, vm.idade);
+</script>
