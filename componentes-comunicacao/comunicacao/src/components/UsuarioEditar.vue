@@ -31,7 +31,7 @@ export default {
   },
 
   watch: {
-    nome(novo, antigo) {
+    nome(novo) {
       this.nomeProps = novo;
     },
   },
