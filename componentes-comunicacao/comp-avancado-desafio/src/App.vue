@@ -12,7 +12,7 @@
       </button>
     </span>
     <component :is="componenteAtivo">
-      <div v-html="mensagem"></div>
+      <span>Conteúdo do Componente <strong>{{ componenteAtivo }}</strong></span>
     </component>
   </div>
 </template>
@@ -28,15 +28,13 @@ export default {
   data() {
     return {
       componenteAtivo: "",
-      mensagem: "",
     };
   },
 
   methods: {
     ativarComponente($event) {
       let cor = $event.toElement.id;
-      this.mensagem = `Conteúdo do Componente <strong>${cor}</strong>`;
-      this.compAtivo = cor;
+      this.componenteAtivo = cor;
     },
   },
 };
