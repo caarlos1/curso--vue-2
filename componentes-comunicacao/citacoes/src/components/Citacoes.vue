@@ -4,12 +4,22 @@
             <button @click="numero--">&lt;</button>
             <button @click="numero++">&gt;</button>
         </span>
-        {{ numero }} {{ indice }}
+        
+        <citacao>
+            <h3 slot="autor">{{ citacoes[indice].autor}}</h3>
+            <p slot="texto">{{ citacoes[indice].texto}}</p>
+            <h6 slot="fonte">{{ citacoes[indice].fonte}}</h6>
+            
+        </citacao>
     </div>
 </template>
 
 <script>
+import Citacao from '@/components/Citacao.vue'
 export default {
+    components: {
+        Citacao,
+    },
     data() {
         return {
             numero: 0,
