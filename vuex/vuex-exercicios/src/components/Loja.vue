@@ -1,53 +1,71 @@
 <template>
-    <Painel titulo="Loja Virtual" verde>
-        <div class="loja">
-            <span>Adicionar</span>
-            <input type="number" v-model.number="quantidade">
-            <span>itens de <strong>R$</strong></span>
-            <input type="number" v-model.number="preco">
-            <button @click="adicionar">Agora!</button>
-        </div>
-    </Painel>
+  <Painel titulo="Loja Virtual" verde>
+    <div class="loja">
+      <span>Adicionar</span>
+      <input type="number" v-model.number="quantidade" />
+      <span>itens de <strong>R$</strong></span>
+      <input type="number" v-model.number="preco" />
+      <button @click="adicionar">Agora!</button>
+    </div>
+  </Painel>
 </template>
 
 <script>
+import { mapMutations, mapActions } from "vuex";
 
 export default {
-    data() {
-        return {
-            sequencia: 1,
-            quantidade: 1,
-            preco: 9.99,
-        }
+  data() {
+    return {
+      sequencia: 1,
+    };
+  },
+  methods: {
+    ...mapMutations(["adicionarProduto"]), // importanto mutations
+    ...mapActions(["actionAdicionarProduto"]),
+    adicionar() {
+      const produto = {
+        id: this.sequencia,
+        nome: `Produto ${this.sequencia}`,
+        quantidade: this.quantidade,
+        preco: this.preco,
+      };
+      this.sequencia++;
+
+      // Sate
+      // this.$store.state.produtos.push(produto)
+
+      // Mutations
+      // this.$store.commit("adicionarProduto", produto);
+      this.adicionarProduto(produto);
+
+      // Actions:
+      // this.actionAdicionarProduto(produto);
+      // this.$store.dispatch("actionAdicionarProduto", produto);
     },
-    methods: {
-        adicionar() {
-            const produto = {
-                id: this.sequencia,
-                nome: `Produto ${this.sequencia}`,
-                quantidade: this.quantidade,
-                preco: this.preco
-            }
-            this.sequencia++
-            // eslint-disable-next-line
-            console.log(produto)
-        }
-    }
-}
+  },
+  computed: {
+    quantidade() {
+      return this.$store.state.quantidade;
+    },
+    preco() {
+      return this.$store.state.preco;
+    },
+  },
+};
 </script>
 
 <style>
-    .loja {
-        display: flex;
-        justify-content: center;
-    }
+.loja {
+  display: flex;
+  justify-content: center;
+}
 
-    .loja > * {
-        margin: 0px 10px;
-    }
+.loja > * {
+  margin: 0px 10px;
+}
 
-    input {
-        font-size: 2rem;
-        width: 90px;
-    }
+input {
+  font-size: 2rem;
+  width: 90px;
+}
 </style>
